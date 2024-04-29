@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  web:
+    image: "php:apache-bullseye"
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/var/www/html
+    environment:
+      SAMPLE_ENV: development
