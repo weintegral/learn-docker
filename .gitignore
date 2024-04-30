@@ -1,3 +1,4 @@
 node_modules
 vendor
 mysql_data
+.Ds_Store

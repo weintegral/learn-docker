@@ -88,3 +88,19 @@ docker compose exec -it web bash
 
 docker compose ps
 ```
+
+How to connect with database container?
+
+```bash
+
+mysql -h 127.0.0.1 -P <host_db_port> -u root -p
+
+mysql -h 127.0.0.1 -P 33060 -u root -p
+```
+
+How to import sql database into db container?
+
+```bash
+
+mysql -h 127.0.0.1 -P 33060 -u root -p < docker/db/mysqlsampledatabase.sql
+```

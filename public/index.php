@@ -1,7 +1,14 @@
 <?php
 
 $title = 'Home Page';
-$heading1 = 'Home Page from WeIntegral and Gopi';
+$heading1 = '';
+
+$host = 'sql-server';
+$dbName = 'classicmodels';
+$username = 'root';
+$password = 'root';
+
+$dsn = "mysql:host=$host;dbname=$dbName";
 
 ?>
 
@@ -13,6 +20,21 @@ $heading1 = 'Home Page from WeIntegral and Gopi';
     <title><?php echo $title;  ?> </title>
 </head>
 <body>
-    <h1><?php echo $heading1; ?></h1>
+    <?php
+        try {
+            $pdo = new PDO($dsn, $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $heading1 = 'Connected to the database';
+            echo "<h1> $heading1 </h1>";
+            $sql = 'SELECT * FROM customers where customerName like "A%"';
+            $stmt = $pdo->query($sql);
+            while ($row = $stmt->fetch()) {
+                echo $row['customerName'] . '<br>';
+            }
+        } catch (PDOException $e) {
+            $message = $e->getMessage();
+            echo "<h1>Connection failed: $message </h1>";
+        }
+    ?>
 </body>
 </html>
