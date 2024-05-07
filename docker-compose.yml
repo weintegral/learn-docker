@@ -11,6 +11,16 @@ services:
       - "8070:80"
     volumes:
       - ./public/:/var/www/html/
+  node-server:
+    image: "node-server"
+    container_name: "node-server"
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./node/:/usr/src/app/
   sql-server:
     image: "mysql:latest"
     container_name: "mysql-server"
